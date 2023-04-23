@@ -10,10 +10,10 @@ import ezdxf
 import sys
 import time
 
-def extract_edges(input_file, output_file, threshold_angle):
+def extract_edges(input, output, threshold_angle):
     start_time = time.time()   # record the script start time
 
-    mesh = trimesh.load(input_file) # load mesh
+    mesh = trimesh.load(input) # load mesh
     print(f"Loaded {len(mesh.faces)} triangles")
 
     # extract vertices and faces of the mesh
@@ -56,7 +56,7 @@ def extract_edges(input_file, output_file, threshold_angle):
     print(f"Selected {num_selected_faces} triangles out of {total_num_faces} loaded.")
 
     sharp_mesh = trimesh.Trimesh(vertices, sharp_faces) # create a new mesh object that only contains the faces that are marked as sharp edges
-    sharp_mesh.export(output_file + ".obj") # export the sharp mesh to a file
+    sharp_mesh.export(output + ".obj") # export the sharp mesh to a file
 
     doc = ezdxf.new()    # create a new DXF document
     msp = doc.modelspace()   # get the model space of the DXF document
@@ -68,8 +68,8 @@ def extract_edges(input_file, output_file, threshold_angle):
         end = vertices[edge[0][1]]      # retrieves the ending vertex of the sharp edge from the vertices array
         msp.add_line(start, end, dxfattribs={'layer': layer})   # adds a new line to the model space of the DXF document, with the specified starting and ending points
 
-    dxf_output_file = output_file + ".dxf"  # specifies the output file name for the DXF file to be created, by concatenating the output_file argument with the '.dxf' file extension
-    doc.saveas(dxf_output_file) # saves the DXF document to the specified file path
+    dxf_output = output + ".dxf"  # specifies the output file name for the DXF file to be created, by concatenating the output argument with the '.dxf' file extension
+    doc.saveas(dxf_output) # saves the DXF document to the specified file path
 
     end_time = time.time()  # records the end time of the script
 
@@ -77,10 +77,10 @@ def extract_edges(input_file, output_file, threshold_angle):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:  # check the number of command-line agruments
-        print("Help: python extract_edges.py <input_file> <output_file> <threshold_angle>")
+        print("Help: python extract_edges.py <input> <output> <threshold_angle>")
         sys.exit(1)
     # retireving arguments from command line
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    input = sys.argv[1]
+    output = sys.argv[2]
     threshold_angle = float(sys.argv[3])
-    extract_edges(input_file, output_file, threshold_angle) #passing in the command-line arguments as arguments to the function
+    extract_edges(input, output, threshold_angle) #passing in the command line arguments as arguments to the function
