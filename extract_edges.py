@@ -76,10 +76,10 @@ def extract_edges(input, output, threshold_angle):
     print(f"Script took {end_time - start_time:.2f} seconds to run.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:  # check the number of command-line agruments
+    if len(sys.argv) != 4:  # check the number of command line agruments
         print("Help: python extract_edges.py <input> <output> <threshold_angle>")
         sys.exit(1)
-    # retireving arguments from command line
+    # retieving arguments from command line
     input = sys.argv[1]
     output = sys.argv[2]
     threshold_angle = float(sys.argv[3])
