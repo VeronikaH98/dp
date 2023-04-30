@@ -1,8 +1,17 @@
 """
-Veronika Hajdúchová
-2023
-Diplomová práca: Detekcia hrán na lidarových dátach pomocou decimácie trojuholníkovej siete.
+#########################################################################################################################
+# Bc. Veronika Hajdúchová, 2023                                                                                         #
+#                                                                                                                       #
+# Diplomová práca: Detekcia hrán na lidarových dátach pomocou decimácie trojuholníkovej siete.                          #
+# Univerzita Komenského v Bratislave, Prírodovedecká fakulta, Katedra fyzickej geografie a geoinformatiky               #
+#                                                                                                                       #
+# Master thesis: Edge detection on lidar data using triangular network decimation                                       #
+# Comenius University Bratislava, Faculty of Natural Sciences, Department of Physical Geography and Geoinformatics      #
+#                                                                                                                       #
+#########################################################################################################################
 """
+
+
 # import of libraries
 import trimesh
 import numpy as np
@@ -11,17 +20,18 @@ import sys
 import time
 
 def extract_edges(input, output, threshold_angle):
+    print("Script started at:", time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())) # date and time when script started
     start_time = time.time()   # record the script start time
 
     mesh = trimesh.load(input) # load mesh
-    print(f"Loaded {len(mesh.faces)} triangles")
+    print(f"Loaded {len(mesh.faces)} triangles.")
 
     # extract vertices and faces of the mesh
     vertices = mesh.vertices
     faces = mesh.faces
-
+    
     is_edge = np.zeros(len(faces), dtype=bool)  # create boolean array for sharp/non sharp edges
-
+   
     vertex_faces = {}  # initialize a dictionary for mapping vertices to the faces that they belong to
     for i, vertex in enumerate(vertices):
         vertex_faces[i] = [j for j, face in enumerate(faces) if i in face]  # map vertex i to all faces that contain it
@@ -77,7 +87,7 @@ def extract_edges(input, output, threshold_angle):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:  # check the number of command line agruments
-        print("Help: python extract_edges.py <input> <output> <threshold_angle>")
+        print("Usage: python extract_edges.py <input> <output> <threshold_angle>")
         sys.exit(1)
     # retieving arguments from command line
     input = sys.argv[1]
