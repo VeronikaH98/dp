@@ -8,3 +8,6 @@ To run this script, you must define in the command line: input.obj output thresh
 + input = should be any triangular mesh file that already has normals calculated (input should be in a format that the Trimesh library can read)
 + output = base name for outputs (.obj and .dxf)
 + threshold_angle = angle threshold for edge detection in degrees
+
+
+Required libraries are Trimesh, Numpy, Ezdxf, Sys and Time.
