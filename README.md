@@ -8,15 +8,16 @@ To run this script, you must define in the command line: input.obj output thresh
 + input = should be any triangular mesh file that already has normals calculated (input should be in a format that the Trimesh library can read)
 + output = base name for outputs (.obj and .dxf)
 + threshold_angle = angle threshold for edge detection in degrees
+<br />
 
-		python extract_edges.py input output threshold_angle
+	python extract_edges.py input output threshold_angle
 
-		e.g.: python extract_edges.py dem.obj dem_output 30
+	e.g.: python extract_edges.py dem.obj dem_output 30
 
 Required libraries are Trimesh, Numpy, Ezdxf, Sys* and Time*.
 		
-		pip install trimesh
-		pip install numpy
-		pip install ezdxf
+	pip install trimesh
+	pip install numpy
+	pip install ezdxf
 		
 *library is built-in with python, no need to install, just import it
