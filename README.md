@@ -9,5 +9,14 @@ To run this script, you must define in the command line: input.obj output thresh
 + output = base name for outputs (.obj and .dxf)
 + threshold_angle = angle threshold for edge detection in degrees
 
+		python extract_edges.py input output threshold_angle
 
-Required libraries are Trimesh, Numpy, Ezdxf, Sys and Time.
+		e.g.: python extract_edges.py dem.obj dem_output 30
+
+Required libraries are Trimesh, Numpy, Ezdxf, Sys* and Time*.
+		
+		pip install trimesh
+		pip install numpy
+		pip install ezdxf
+		
+*library is built-in with python, no need to install, just import it
